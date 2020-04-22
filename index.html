@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Canvas Notes App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="header__title">Canvas Notes App</h1>
+            <h2 class="header__subtitle">LocalStorage Version</h2>
+        </div>
+    </header>
+    <div class="actions">
+        <div class="actions__container">
+            <input id="searchText" type="text" class="input" placeholder="Filter notes">
+            <select id="filterBy" class="dropdown">
+                <option value="byEdited">更新日順</option>
+                <option value="byCreated">作成日順</option>
+                <option value="alphabetical">アルファベット順</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="notes"></div>
+    </div>  
+
+    <div class="footer">
+        <button id="createNote" class="bottomButton">CanvasNoteを作成する</button>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/uuid@latest/dist/umd/uuidv4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo=" crossorigin="anonymous"></script>
+    <script src="./notes-function.js"></script>
+    <script src="./notes-app.js"></script>
+
+</body>
+</html>

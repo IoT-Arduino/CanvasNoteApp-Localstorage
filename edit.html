@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CanvasNote Edit Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="header">
+        <div class="container">
+            <h1 class="header__title"><a href="index.html">Canvas Notes App</a></h1>
+            <!-- <h2 class="header__subtitle">LocalStorage Version</h2> -->
+        </div>
+    </div>
+
+    <div class="container">
+        <input id="note-title" placeholder="Note Title" class="title-input">
+        <span id="last-edited"></span>
+    </div>
+
+    <div class="canvas-container">
+        <canvas id="canvasArea" width="350" height="300"></canvas>
+    </div>
+
+    <div class="container canvasButton">
+        <button type="button" onclick="prevCanvas()" class="button--secondary">戻る</button>
+        <button type="button" onclick="nextCanvas()" class="button--secondary">進む</button>
+    </div>
+    
+    <div class="container">
+        <textarea id="note-body" placeholder="Enter note text" class="body-input"></textarea>
+        <div class="buttonArea">
+            <a href="index.html"><button class="button">トップへ戻る</button></a>
+            <button id="remove-note" class="button">ノートの削除</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo=" crossorigin="anonymous"></script>
+    <script src="notes-function.js"></script>
+    <script src="notes-edit.js"></script>
+    
+</body>
+</html>
