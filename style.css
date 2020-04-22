@@ -20,7 +20,7 @@ color: #333333;
 font-family: Helvetica, Arial, sans-serif;
 font-size: 1.6rem;
 
-max-width:1200px;
+max-width:500px;
 margin:0 auto 10px;
 }
 
@@ -196,10 +196,8 @@ button#remove-note.button{
 
 /* Note List Item */
 
-#listArea{
-  position: relative;
-  z-index: -1;
-  overflow: scroll;
+#notes{
+  min-height: 600px;
 }
 
 .list-item {
