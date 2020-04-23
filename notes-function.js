@@ -57,7 +57,6 @@ const generateNoteDOM = (note) => {
     noteEl.appendChild(button)
     textEl.setAttribute('href',`edit.html#${note.id}`)
     noteEl.appendChild(textEl)
-    // noteEl.appendChild(dateEl)
 
     return noteEl
 }
@@ -100,7 +99,6 @@ const sortNotes = (notes, sortBy) => {
 }
 
 
-
 // Render application notes
 const renderNotes =  (notes,filters) => {
     notes = sortNotes(notes, filters.sortBy)
@@ -114,7 +112,6 @@ const renderNotes =  (notes,filters) => {
         const noteEl =  generateNoteDOM(note)       
         document.querySelector('#notes').appendChild(noteEl)
     })
-
 }
 
 // generate last edited msg
@@ -125,3 +122,130 @@ const generateLastEdited = (timestamp) => {
 const generateLastEditedTop = (timestamp) => {
     return `${moment(timestamp).fromNow()}`
 }
+
+
+// ==== Canvas Functions ======================
+
+
+function startPoint(e){
+    e.preventDefault();
+    ctx.beginPath();
+  
+    if(e.changedTouches){
+          e = e.changedTouches[0]
+          Xpoint = e.clientX-event.target.getBoundingClientRect().left-2;
+          Ypoint = e.clientY-event.target.getBoundingClientRect().top-2;
+     } else {
+          Xpoint = e.offsetX-2;
+          Ypoint = e.offsetY-2;
+     }
+  
+  　// ポインタ先端の位置調整
+    Xpoint = e.offsetX-2;
+    Ypoint = e.offsetY-2;
+      
+    ctx.moveTo(Xpoint, Ypoint);
+  }
+  
+    
+  function movePoint(e){
+   if(e.buttons === 1 || e.witch === 1 || e.type == 'touchmove'){
+  
+      if(e.changedTouches){
+          e = e.changedTouches[0]
+          Xpoint = e.clientX-event.target.getBoundingClientRect().left-2;
+          Ypoint = e.clientY-event.target.getBoundingClientRect().top-2;
+     } else {
+          Xpoint = e.offsetX-2;
+          Ypoint = e.offsetY-2;
+     }
+  
+      moveflg = 1;
+        
+      ctx.lineTo(Xpoint, Ypoint);
+      ctx.lineCap = "round";
+      ctx.lineWidth = defSize * 2;
+      ctx.strokeStyle = defColor;
+      ctx.stroke();
+    }
+  }
+    
+  function endPoint(e){
+      if(moveflg === 0)
+      {
+         ctx.lineTo(Xpoint-1, Ypoint-1);
+         ctx.lineCap = "round";
+         ctx.lineWidth = defSize * 2;
+         ctx.strokeStyle = defColor;
+         ctx.stroke();
+  
+      }
+      moveflg = 0;
+      setLocalStoreage();
+  }
+   
+  
+  function resetCanvas() {
+      ctx.clearRect(0, 0, ctx.canvas.clientWidth, ctx.canvas.clientHeight);
+  }
+   
+  
+  function setLocalStoreage(){
+      const png = canvas.toDataURL();
+  　　const canvasItems = note.canvas
+  
+      setTimeout(function(){
+          canvasItems.unshift({png});
+          note.canvas = canvasItems
+          note.updatedAt  = moment().valueOf()
+          dateElement.innerText = generateLastEdited(note.updatedAt)
+          saveNotes(notes)
+   
+          currentCanvas = 0;
+          temp = [];
+   
+      }, 0);
+  }
+   
+  function prevCanvas(){
+  　　const canvasItems = note.canvas
+      if(canvasItems.length > 0) {
+          temp.unshift(canvasItems.shift());
+          setTimeout(function(){
+              note.canvas = canvasItems
+              note.updatedAt  = moment().valueOf()
+              dateElement.innerText = generateLastEdited(note.updatedAt)
+              saveNotes(notes)
+              resetCanvas();
+              if(canvasItems[0]){
+                  draw(canvasItems[0]['png']);
+              }
+          }, 0);
+      }
+  
+  }
+   
+  function nextCanvas(){
+      const canvasItems = note.canvas
+      if(temp.length > 0){
+          canvasItems.unshift(temp.shift());
+           setTimeout(function(){
+              note.canvas = canvasItems
+              note.updatedAt  = moment().valueOf()
+              dateElement.innerText = generateLastEdited(note.updatedAt)
+              saveNotes(notes)
+              resetCanvas();
+              draw(canvasItems[0]['png']);
+           }, 0);
+      }
+  }
+   
+  
+  function draw(src) {
+      const img = new Image();
+      img.src = src;
+  
+      img.onload = function() {
+          ctx.drawImage(img,0,0);
+      }
+  }
