@@ -9,9 +9,11 @@ let notes = getSavedNotes()
 note = notes.find((note) => {
     return note.id === noteId
 })
+
 if(note === undefined){
     location.assign('index.html')
 }
+
 titleElement.value = note.title
 bodyElement.value = note.body
 dateElement.innerText = generateLastEdited(note.updatedAt)

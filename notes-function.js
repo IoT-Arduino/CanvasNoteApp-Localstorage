@@ -101,6 +101,7 @@ const sortNotes = (notes, sortBy) => {
 
 // Render application notes
 const renderNotes =  (notes,filters) => {
+
     notes = sortNotes(notes, filters.sortBy)
     const filteredNotes = notes.filter((note) => {
         return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
@@ -112,6 +113,7 @@ const renderNotes =  (notes,filters) => {
         const noteEl =  generateNoteDOM(note)       
         document.querySelector('#notes').appendChild(noteEl)
     })
+
 }
 
 // generate last edited msg
