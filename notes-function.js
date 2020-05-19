@@ -29,15 +29,17 @@ const removeNote = (id) => {
 const generateNoteDOM = (note) => {
     const noteEl = document.createElement('div')
     const textEl = document.createElement('a')
-    const button = document.createElement('button')
+    const button = document.createElement('div')
     const dateEl = document.createElement('div')
 
     // setup notelist and remove button
     noteEl.classList.add('list-item')
     noteEl.classList.add('container')
     button.classList.add('list-item__button')
-    button.textContent = 'x'
     textEl.classList.add('list-item__title')
+    button.innerHTML =`<span class="material-icons">
+    delete_forever
+    </span>`
     dateEl.classList.add('list-item__date')
     dateEl.textContent = generateLastEditedTop(note.updatedAt)
 
@@ -54,9 +56,9 @@ const generateNoteDOM = (note) => {
         textEl.textContent = 'Unnamed note'
     }
 
-    noteEl.appendChild(button)
     textEl.setAttribute('href',`edit.html#${note.id}`)
     noteEl.appendChild(textEl)
+    noteEl.appendChild(button)
 
     return noteEl
 }

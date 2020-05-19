@@ -172,7 +172,9 @@ font-weight: 300;
 }
 
 #last-edited{
-  display: none;
+  margin: 12px 8px;
+  padding-right:10px;
+  text-align: right;
 }
 
 .body-input {
@@ -212,27 +214,26 @@ button#remove-note.button{
   margin: 1.6rem 0;
   padding: 1.6rem;
   display: flex;
+  justify-content: space-between;
   transition: background .3s ease;
-
 }
 
 .list-item:hover {
   background: #eeeeee;
 }
 
-.list-item__button {
+/* .list-item__button {
   padding: 0.4rem;
   color: #666;
   font-size: 1.6rem;
   font-weight: 600;
-  width:3rem;
+  width:5rem;
   text-align: center;
-}
+} */
 .list-item__title {
   font-size: 1.8rem;
-  margin: 0 1rem .2rem; 
+  margin: 0 1rem; 
 }
-
 
 .list-item__date {
   margin:0 0 0 auto;
