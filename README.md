@@ -5,10 +5,7 @@
 
 ## 💫 DemoSiteのアドレス
 
-アプリurl : [CanvasNoteApp-LocasStorage](https://canvasnoteapp-localstorage.netlify.app/) &nbsp;  
-(サインイン不要,初期画面左下のCanvasNoteを作成するボタンをクリックしてNoteを作成ください）
-
-![CanvasMemo](https://user-images.githubusercontent.com/45728258/103496022-0a44e600-4e80-11eb-8994-e77638d1ffcf.jpg)
+アプリurl : Closed
 
 
 ## 💫 関連アプリケーションレポジトリ
